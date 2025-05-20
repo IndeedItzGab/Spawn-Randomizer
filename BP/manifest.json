@@ -1,11 +1,11 @@
 {
   "format_version": 2,
   "header": {
-    "name": "§l§rSpawn-Randomizer §r(§a1.0.0§r)",
+    "name": "§l§rSpawn-Randomizer §r(§a1.0.1§r)",
     "description": "This randomize all new player spawn location with specified threshold. You can even specify a specific locations!",
     "uuid": "39e659c0-785d-4475-a051-b7267dcc9e3b",
     "min_engine_version": [1, 21, 80],
-    "version": [1, 0, 0]
+    "version": [1, 0, 1]
   },
   "modules": [
     {
