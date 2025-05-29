@@ -9,6 +9,9 @@ A Minecraft: Bedrock Edition script that randomize the spawn point location of a
 - Beta APIs enabled in experimental features section.
 ![beta_api](docs/images/beta_apis.jpg)
 
+## Installation
+Visit [here](docs/INSTRUCTIONS.md) for more information about installing this project.
+
 ## Features
 - Automatically randomize a new player spawn location depending on the threshold or setting.
 - Administrator may specify locations for new players to be teleported on one of the specified locations and that will be their spawn point.
