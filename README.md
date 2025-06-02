@@ -5,6 +5,11 @@
 
 A Minecraft: Bedrock Edition script that randomize the spawn point location of a new players. Therefore, you can easily spreadout all your players once they joined without manually spreading them out.
 
+## Documentation
+- [Commands List](https://github.com/IndeedItzGab/Spawn-Randomizer/blob/main/docs/COMMANDS.md#available-commands)
+- [FAQ](https://github.com/IndeedItzGab/Spawn-Randomizer/blob/main/docs/FAQ.md#frequently-asked-questions)
+- [Installation Guide](https://github.com/IndeedItzGab/Spawn-Randomizer/blob/main/docs/INSTRUCTIONS.md#instructions)
+
 ## Requirements
 - Beta APIs enabled in experimental features section.
 ![beta_api](docs/images/beta_apis.jpg)
