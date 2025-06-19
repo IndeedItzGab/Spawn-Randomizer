@@ -14,7 +14,7 @@ const commandInformation = {
   usage:[
     {
       name: "sr:mode",
-      type: 9,
+      type: "Enum",
       optional: false
     },
   ]
