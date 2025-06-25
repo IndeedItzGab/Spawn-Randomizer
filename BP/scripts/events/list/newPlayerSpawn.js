@@ -3,10 +3,20 @@ import { config } from "../../config.js"
 import * as db from "../../utilities/storage.js"
 import "../../utilities/getTopBlock.js"
 
-world.afterEvents.playerSpawn.subscribe((event) => {
+world.afterEvents.playerSpawn.subscribe(async (event) => {
   const player = event.player;
   const threshold = config.distanceThreshold
   const setting = db.fetch("spawnRandomizerSetting", true)[0]
+
+  let recentPlayerList = db.fetch("recentPlayerList", true);
+  if(!player.getSpawnPoint()) {
+    const playerData = recentPlayerList.find(d => d.name === player.name)
+    const dimension = world.getDimension(playerData?.dimension)
+    system.run(() => {
+      player.tryTeleport({x: playerData.location.x, y: playerData.location.y, z: playerData.location.z}, {dimension})
+      player.runCommand(`spawnpoint @s ${playerData.location.x} ${playerData.location.y} ${playerData.location.z}`)
+    })
+  }
   
   if(!player.isNew() || (setting && setting.mode === "vanilla")) return;
   
@@ -16,7 +26,7 @@ world.afterEvents.playerSpawn.subscribe((event) => {
     let z = Math.floor(Math.random() * threshold) + 1;
     player.tryTeleport({x, y: 320, z})
     
-    const runner = system.runInterval(() => {
+    const runner = system.runInterval(async () => {
       const topBlock = getTopBlock({x, z})
       player.tryTeleport({x, y: 320,z})
       
@@ -29,6 +39,7 @@ world.afterEvents.playerSpawn.subscribe((event) => {
       
       if(topBlock) {
         player.tryTeleport({x, y: topBlock.location.y + 1, z})
+        console.info("test")
         data = {
           name: player.name,
           dimension: player.dimension.id,
@@ -39,6 +50,8 @@ world.afterEvents.playerSpawn.subscribe((event) => {
           }
         }
         player.runCommand(`spawnpoint @s ${x} ${topBlock.location.y + 1} ${z}`)
+        recentPlayerList.push(data)
+        db.store("recentPlayerList", recentPlayerList)
         system.clearRun(runner)
       }
     }, 1*20)
@@ -50,7 +63,7 @@ world.afterEvents.playerSpawn.subscribe((event) => {
     player.tryTeleport({x: result.location.x, y: result.location.y, z: result.location.z}, {dimension})
     data = {
       name: player.name,
-      dimension: dimension,
+      dimension: player.dimension.id,
       location: {
         x: result.location.x,
         y: result.location.y,
@@ -58,19 +71,8 @@ world.afterEvents.playerSpawn.subscribe((event) => {
       }
     }
     player.runCommand(`spawnpoint @s ${result.location.x} ${result.location.y} ${result.location.z}`)
+    recentPlayerList.push(data)
+    db.store("recentPlayerList", recentPlayerList)
   }
   
-  let recentPlayerList = db.fetch("recentPlayerList", true);
-  
-  if(!player.getSpawnPoint()) {
-    const playerData = recentPlayerList.find(d => d.name === player.name)
-    const dimension = world.getDimension(playerData.dimension)
-    system.run(() => {
-      player.tryTeleport({x: playerData.location.x, y: playerData.location.y, z: playerData.location.z}, {dimension})
-      player.runCommand(`spawnpoint @s ${playerData.location.x} ${playerData.location.y} ${playerData.location.z}`)
-    })
-  }
-  
-  recentPlayerList.push(data)
-  db.store("recentPlayerList", recentPlayerList)
 })

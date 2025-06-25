@@ -17,7 +17,7 @@ Player.prototype.isNew = function () {
   const isZeroXP = this.getTotalXp() <= 1
 
   // If the player is not listed in recent player list
-  const isNotListed = db.fetch("recentPlayerList", true).some(d => d.name !== this.name)
+  const isNotListed = !db.fetch("recentPlayerList", true).some(d => d.name === this.name)
  
   return location && noArmor && isZeroXP && isNotListed
 };
