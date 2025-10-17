@@ -1,6 +1,6 @@
 name: Spawn-Randomizer
-version: V1.0.31
+version: V1.0.4
 status: STABLE
 message: |
-  # BedrockTeams V1.0.31
-  - Updated to support the latest version of Minecraft: Bedrock Edition.
+  # BedrockTeams V1.0.4
+  - Fixed compatibility issues with Minecraft 1.21.111 and above.
