@@ -1,6 +1,6 @@
 name: Spawn-Randomizer
-version: V1.0.4
+version: V1.0.5
 status: STABLE
 message: |
-  # BedrockTeams V1.0.4
-  - Fixed compatibility issues with Minecraft 1.21.111 and above.
+  # Spawn-Randomizer V1.0.5
+  - The pack will now automatically support manifest updates. Therefore, this pack supports minecraft bedrock (1.21.120) and above without further manual manifest updates.
