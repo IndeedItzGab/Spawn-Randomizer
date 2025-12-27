@@ -4,12 +4,13 @@ import {
 } from "@minecraft/server";
 import { registerCommand }  from "../commandRegistry.js"
 import { messages } from "../../messages.js"
-import * as db from "../../utilities/storage.js"
+import * as db from "../../utilities/DatabaseHandler.js"
 
 
 const commandInformation = {
   name: "spawnmode",
   description: "Choose which spawn mode will the spawn-randomize should use.",
+  permissionLevel: 1,
   aliases: [],
   usage:[
     {
@@ -23,7 +24,6 @@ const commandInformation = {
 registerCommand(commandInformation, (origin, mode) => {
   
   const player = origin.sourceEntity
-  if(!player.isAdmin()) return player.sendMessage(messages.MUST_BE_ADMIN)
   
   let spawnRandomizerSetting = db.fetch("spawnRandomizerSetting", true)
   if(!spawnRandomizerSetting[0]) {

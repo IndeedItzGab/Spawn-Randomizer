@@ -4,12 +4,13 @@ import {
 } from "@minecraft/server";
 import { registerCommand }  from "../commandRegistry.js"
 import { messages } from "../../messages.js"
-import * as db from "../../utilities/storage.js"
+import * as db from "../../utilities/DatabaseHandler.js"
 
 
 const commandInformation = {
   name: "clearspawns",
   description: "Clear all specified random spawn locations.",
+  permissionLevel: 1,
   aliases: [],
   usage:[]
 }
@@ -17,8 +18,8 @@ const commandInformation = {
 registerCommand(commandInformation, (origin) => {
   
   const player = origin.sourceEntity
-  if(!player.isAdmin()) return player.sendMessage(messages.MUST_BE_ADMIN)
   db.store("randomSpecifiedLocation", [])
+  
   player.sendMessage(messages.SUCCESS_CLEARED_RANDOM_SPAWN_LOCATIONS)
   return {
     status: 0

@@ -1,7 +1,7 @@
 import { world, system } from "@minecraft/server"
 import { config } from "../../config.js"
-import * as db from "../../utilities/storage.js"
-import "../../utilities/getTopBlock.js"
+import * as db from "../../utilities/DatabaseHandler.js"
+import "../../utilities/FetchTopBlock.js"
 
 world.afterEvents.playerSpawn.subscribe(async (event) => {
   const player = event.player;

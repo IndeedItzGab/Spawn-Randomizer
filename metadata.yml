@@ -1,6 +1,7 @@
 name: Spawn-Randomizer
-version: V1.0.5
+version: V1.0.6
 status: STABLE
 message: |
-  # Spawn-Randomizer V1.0.5
-  - The pack will now automatically support manifest updates. Therefore, this pack supports minecraft bedrock (1.21.120) and above without further manual manifest updates.
+  # Spawn-Randomizer V1.0.6
+  - Added `/spreadplayers` command to spread all players manually.
+  - Updated administrator validation on each commands, now required players to have operator permission.

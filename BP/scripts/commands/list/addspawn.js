@@ -4,11 +4,12 @@ import {
 } from "@minecraft/server";
 import { registerCommand }  from "../commandRegistry.js"
 import { messages } from "../../messages.js"
-import * as db from "../../utilities/storage.js"
+import * as db from "../../utilities/DatabaseHandler.js"
 
 const commandInformation = {
   name: "addspawn",
   description: "Add your current location to be listed as one of the specified random spawn location.",
+  permissionLevel: 1,
   aliases: [],
   usage:[]
 }
@@ -16,8 +17,8 @@ const commandInformation = {
 registerCommand(commandInformation, (origin) => {
   
   const player = origin.sourceEntity
-  if(!player.isAdmin()) return player.sendMessage(messages.MUST_BE_ADMIN)
   let specifiedLocations = db.fetch("randomSpecifiedLocation", true)
+  
   specifiedLocations.push({
     location: {
       x: Math.round(player.location.x),

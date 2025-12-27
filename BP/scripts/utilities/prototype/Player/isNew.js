@@ -1,5 +1,5 @@
 import { Player, world} from "@minecraft/server"
-import * as db from "../../storage.js"
+import * as db from "../../DatabaseHandler.js"
 
 Player.prototype.isNew = function () {
   
